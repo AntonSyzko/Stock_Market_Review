@@ -26,7 +26,7 @@ Sort the Current Stock Market Data to find the max / min values . Use search to 
 
 <hr/>
 
-<b style="margin-left: 40%">Techologies used </b><br/>
+<b style="margin-left: 40%">Technologies used </b><br/>
 <span>Spring Boot</span><br/>
 <span>Yahoo Finance YQL - queries and rest services</span><br/>
 <span>AJAX + Rest Services</span><br/>
