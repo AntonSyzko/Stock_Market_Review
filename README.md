@@ -1,5 +1,5 @@
-# Stock_Market_Review
-Stocks Market and Forex Review based on yahoo Finance
+# Stock Market Financial Review
+Stock Market and Forex Review based on YAHOO Finance Data
 
 
 <b style="margin-left: 40%">STOCK MARKET FINANCIAL REVIEW</b>
