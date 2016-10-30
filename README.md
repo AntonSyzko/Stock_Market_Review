@@ -5,7 +5,7 @@ Stock Market and Forex Review based on YAHOO Finance Data
 <b style="margin-left: 40%">STOCK MARKET FINANCIAL REVIEW</b>
 <hr />
 Ajax + Yahoo finance rest live data provide live Forex currency and commodities rates <br/>
- App provides current financial data : major companies shares data - current price, volume, earnings per share, open , previous close<br/>
+ App provides current financial data : major companies shares data - current price, volume, earnings per share, open , previous close
  ,day high , day low, year high , year low prices. Charts provide garphic demonstration ( comparing price vs earnings ratioo ,open vs previous close <br/>
  year high vs year low price , current shares, stock volume,). Major companies 2016 shares prices  represented  in a form of candlesticks charts ( each candlestick relects <br/>
   the given month open/high/low/close prices ). Few major companies data compared in form of double candlesticks chart. Data stored in  table ( sorting and search may be applied )<br/>
