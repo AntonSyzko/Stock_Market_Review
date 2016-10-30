@@ -1,0 +1,909 @@
+<!DOCTYPE html >
+<html  lang="en"
+       xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+       xmlns:pages="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <title>Title</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css"/>
+    <script th:inline="javascript" src="//code.jquery.com/jquery.js"></script>
+    <script th:inline="javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script th:inline="javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        body {
+            padding-top:5%;
+            padding-bottom: 5%;
+
+        }
+        @media (max-width: 979px) {
+            body {
+                padding-top: 0px;
+            }
+        }
+    </style>
+    <script type="text/javascript"  th:inline="javascript">
+        window.onload=function () {
+            intelVsMsft();
+            oracleVsYhoo();
+            googleVsAmazon();
+            ibmVsApple();
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        var janopen = [[${stockMapForIntel.get(10).getOpen()}]];
+        var janhigh = [[${stockMapForIntel.get(10).getHigh()}]];
+        var janlow = [[${stockMapForIntel.get(10).getLow()}]];
+        var janclose = [[${stockMapForIntel.get(10).getClose()}]];
+
+        var febopen = [[${stockMapForIntel.get(9).getOpen()}]];
+        var febhigh = [[${stockMapForIntel.get(9).getHigh()}]];
+        var feblow = [[${stockMapForIntel.get(9).getLow()}]];
+        var febclose = [[${stockMapForIntel.get(9).getClose()}]];
+
+        var marchopen = [[${stockMapForIntel.get(8).getOpen()}]];
+        var marchhigh = [[${stockMapForIntel.get(8).getHigh()}]];
+        var marchlow = [[${stockMapForIntel.get(8).getLow()}]];
+        var marchlose = [[${stockMapForIntel.get(8).getClose()}]];
+
+        var aprilopen = [[${stockMapForIntel.get(7).getOpen()}]];
+        var aprilhigh = [[${stockMapForIntel.get(7).getHigh()}]];
+        var aprillow = [[${stockMapForIntel.get(7).getLow()}]];
+        var aprilclose = [[${stockMapForIntel.get(7).getClose()}]];
+
+        var mayopen = [[${stockMapForIntel.get(6).getOpen()}]];
+        var mayhigh = [[${stockMapForIntel.get(6).getHigh()}]];
+        var maylow = [[${stockMapForIntel.get(6).getLow()}]];
+        var mayclose = [[${stockMapForIntel.get(6).getClose()}]];
+
+        var juneopen = [[${stockMapForIntel.get(5).getOpen()}]];
+        var junehigh = [[${stockMapForIntel.get(5).getHigh()}]];
+        var junelow = [[${stockMapForIntel.get(5).getLow()}]];
+        var juneclose = [[${stockMapForIntel.get(5).getClose()}]];
+
+        var julyopen = [[${stockMapForIntel.get(4).getOpen()}]];
+        var julyhigh = [[${stockMapForIntel.get(4).getHigh()}]];
+        var julylow = [[${stockMapForIntel.get(4).getLow()}]];
+        var julyclose = [[${stockMapForIntel.get(4).getClose()}]];
+
+        var augopen = [[${stockMapForIntel.get(3).getOpen()}]];
+        var aughigh = [[${stockMapForIntel.get(3).getHigh()}]];
+        var auglow = [[${stockMapForIntel.get(3).getLow()}]];
+        var augclose = [[${stockMapForIntel.get(3).getClose()}]];
+
+        var sepopen = [[${stockMapForIntel.get(2).getOpen()}]];
+        var sephigh = [[${stockMapForIntel.get(2).getHigh()}]];
+        var seplow = [[${stockMapForIntel.get(2).getLow()}]];
+        var sepclose = [[${stockMapForIntel.get(2).getClose()}]];
+
+        var octopen = [[${stockMapForIntel.get(1).getOpen()}]];
+        var octhigh = [[${stockMapForIntel.get(1).getHigh()}]];
+        var octlow = [[${stockMapForIntel.get(1).getLow()}]];
+        var octclose = [[${stockMapForIntel.get(1).getClose()}]];
+
+//        var novopen = [[${stockMapForIntel.get(2).getOpen()}]];
+//        var novhigh = [[${stockMapForIntel.get(2).getHigh()}]];
+//        var novlow = [[${stockMapForIntel.get(2).getLow()}]];
+//        var novclose = [[${stockMapForIntel.get(2).getClose()}]];
+//
+//        var decopen = [[${stockMapForIntel.get(1).getOpen()}]];
+//        var dechigh = [[${stockMapForIntel.get(1).getHigh()}]];
+//        var declow = [[${stockMapForIntel.get(1).getLow()}]];
+//        var decclose = [[${stockMapForIntel.get(1).getClose()}]];
+
+
+
+
+
+        var janopenmsft = [[${stockMapForMSFT.get(10).getOpen()}]];
+        var janhighmsft = [[${stockMapForMSFT.get(10).getHigh()}]];
+        var janlowmsft = [[${stockMapForMSFT.get(10).getLow()}]];
+        var janclosemsft = [[${stockMapForMSFT.get(10).getClose()}]];
+
+        var febopenmsft = [[${stockMapForMSFT.get(9).getOpen()}]];
+        var febhighmsft = [[${stockMapForMSFT.get(9).getHigh()}]];
+        var feblowmsft = [[${stockMapForMSFT.get(9).getLow()}]];
+        var febclosemsft = [[${stockMapForMSFT.get(9).getClose()}]];
+
+        var marchopenmsft = [[${stockMapForMSFT.get(8).getOpen()}]];
+        var marchhighmsft = [[${stockMapForMSFT.get(8).getHigh()}]];
+        var marchlowmsft = [[${stockMapForMSFT.get(8).getLow()}]];
+        var marchlosemsft = [[${stockMapForMSFT.get(8).getClose()}]];
+
+        var aprilopenmsft = [[${stockMapForMSFT.get(7).getOpen()}]];
+        var aprilhighmsft = [[${stockMapForMSFT.get(7).getHigh()}]];
+        var aprillowmsft = [[${stockMapForMSFT.get(7).getLow()}]];
+        var aprilclosemsft = [[${stockMapForMSFT.get(7).getClose()}]];
+
+        var mayopenmsft = [[${stockMapForMSFT.get(6).getOpen()}]];
+        var mayhighmsft = [[${stockMapForMSFT.get(6).getHigh()}]];
+        var maylowmsft = [[${stockMapForMSFT.get(6).getLow()}]];
+        var mayclosemsft = [[${stockMapForMSFT.get(6).getClose()}]];
+
+        var juneopenmsft = [[${stockMapForMSFT.get(5).getOpen()}]];
+        var junehighmsft = [[${stockMapForMSFT.get(5).getHigh()}]];
+        var junelowmsft = [[${stockMapForMSFT.get(5).getLow()}]];
+        var juneclosemsft = [[${stockMapForMSFT.get(5).getClose()}]];
+
+        var julyopenmsft = [[${stockMapForMSFT.get(4).getOpen()}]];
+        var julyhighmsft = [[${stockMapForMSFT.get(4).getHigh()}]];
+        var julylowmsft = [[${stockMapForMSFT.get(4).getLow()}]];
+        var julyclosemsft = [[${stockMapForMSFT.get(4).getClose()}]];
+
+        var augopenmsft = [[${stockMapForMSFT.get(3).getOpen()}]];
+        var aughighmsft = [[${stockMapForMSFT.get(3).getHigh()}]];
+        var auglowmsft = [[${stockMapForMSFT.get(3).getLow()}]];
+        var augclosemsft = [[${stockMapForMSFT.get(3).getClose()}]];
+
+        var sepopenmsft = [[${stockMapForMSFT.get(2).getOpen()}]];
+        var sephighmsft = [[${stockMapForMSFT.get(2).getHigh()}]];
+        var seplowmsft = [[${stockMapForMSFT.get(2).getLow()}]];
+        var sepclosemsft = [[${stockMapForMSFT.get(2).getClose()}]];
+
+        var octopenmsft = [[${stockMapForMSFT.get(1).getOpen()}]];
+        var octhighmsft = [[${stockMapForMSFT.get(1).getHigh()}]];
+        var octlowmsft = [[${stockMapForMSFT.get(1).getLow()}]];
+        var octclosemsft = [[${stockMapForMSFT.get(1).getClose()}]];
+
+//        var novopenmsft = [[${stockMapForMSFT.get(2).getOpen()}]];
+//        var novhighmsft = [[${stockMapForMSFT.get(2).getHigh()}]];
+//        var novlowmsft = [[${stockMapForMSFT.get(2).getLow()}]];
+//        var novclosemsft = [[${stockMapForMSFT.get(2).getClose()}]];
+//
+//        var decopenmsft = [[${stockMapForMSFT.get(1).getOpen()}]];
+//        var dechighmsft = [[${stockMapForMSFT.get(1).getHigh()}]];
+//        var declowmsft = [[${stockMapForMSFT.get(1).getLow()}]];
+//        var decclosemsft = [[${stockMapForMSFT.get(1).getClose()}]];
+//
+
+
+
+     function intelVsMsft() {
+            var chart = new CanvasJS.Chart("chartContainer",
+                    {
+                        title:{
+                            text: "Monthly Stock Prices INTEL Corporation V/S Microsoft for 2015",
+                        },
+                        exportEnabled: true,
+                        axisY: {
+                            includeZero:false,
+                            prefix: "$",
+                            title: "Prices",
+                        },
+                        axisX: {
+                            interval:1,
+                            intervalType: "month",
+
+                            valueFormatString: "MMM",
+                        },
+                        toolTip: {
+                            shared: true,
+                        },
+                        data: [
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "Intel Corporation Stock price",
+                                risingColor: "#17EFDA",
+
+                                dataPoints: [   // Y: [Open, High ,Low, Close]
+                                    {x:  new Date(2016,00,01), y:[janopen,  janhigh,  janlow,  janclose]},
+                                    {x:  new Date(2016,01,01), y:[febopen,  febhigh,  feblow,  febclose]},
+                                    {x:  new Date(2016,02,01), y:[marchopen,  marchhigh,  marchlow,  marchlose]},
+                                    {x:  new Date(2016,03,01), y:[aprilopen,  aprilhigh,  aprillow,  aprilclose]},
+                                    {x:  new Date(2016,04,01), y:[mayopen,  mayhigh,  maylow,  mayclose]},
+                                    {x:  new Date(2016,05,01), y:[juneopen,  junehigh,  junelow,  juneclose]},
+                                    {x:  new Date(2016,06,01), y:[julyopen,  julyhigh,  julylow,  julyclose]},
+                                    {x:  new Date(2016,07,01), y:[augopen,  aughigh,  auglow,  augclose]},
+                                    {x:  new Date(2016,08,01), y:[sepopen,  sephigh,  seplow,  sepclose]},
+                                    {x:  new Date(2016,09,01), y:[octopen,  octhigh,  octlow,  octclose]}
+//                                    {x:  new Date(2015,10,01), y:[novopen,  novhigh,  novlow,  novclose]},
+//                                    {x:  new Date(2015,11,01), y:[decopen,  dechigh,  declow,  decclose]}
+
+                                ]
+                            },
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "Microsoft Corporation Stock Price",
+                                risingColor: "#B58E55",
+
+                                dataPoints: [   // Y: [Open, High ,Low, Close]
+                                    {x:  new Date(2016,00,01), y:[janopenmsft,  janhighmsft,  janlowmsft,  janclosemsft]},
+                                    {x:  new Date(2016,01,01), y:[febopenmsft,  febhighmsft,  feblowmsft,  febclosemsft]},
+                                    {x:  new Date(2016,02,01), y:[marchopenmsft,  marchhighmsft,  marchlowmsft,  marchlosemsft]},
+                                    {x:  new Date(2016,03,01), y:[aprilopenmsft,  aprilhighmsft,  aprillowmsft,  aprilclosemsft]},
+                                    {x:  new Date(2016,04,01), y:[mayopenmsft,  mayhighmsft,  maylowmsft,  mayclosemsft]},
+                                    {x:  new Date(2016,05,01), y:[juneopenmsft,  junehighmsft,  junelowmsft,  juneclosemsft]},
+                                    {x:  new Date(2016,06,01), y:[julyopenmsft,  julyhighmsft,  julylowmsft,  julyclosemsft]},
+                                    {x:  new Date(2016,07,01), y:[augopenmsft,  aughighmsft,  auglowmsft,  augclosemsft]},
+                                    {x:  new Date(2016,08,01), y:[sepopenmsft,  sephighmsft,  seplowmsft,  sepclosemsft]},
+                                    {x:  new Date(2016,09,01), y:[octopenmsft,  octhighmsft,  octlowmsft,  octclosemsft]}
+//                                    {x:  new Date(2015,10,01), y:[novopenmsft,  novhighmsft,  novlowmsft,  novclosemsft]},
+//                                    {x:  new Date(2015,11,01), y:[decopenmsft,  dechighmsft,  declowmsft,  decclosemsft]}
+
+                                ]
+                            }
+                        ]
+                    });
+            chart.render();
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        var janopenOracle = [[${stockMapForOracle.get(10).getOpen()}]];
+        var janhighOracle = [[${stockMapForOracle.get(10).getHigh()}]];
+        var janlowOracle = [[${stockMapForOracle.get(10).getLow()}]];
+        var jancloseOracle = [[${stockMapForOracle.get(10).getClose()}]];
+
+        var febopenOracle = [[${stockMapForOracle.get(9).getOpen()}]];
+        var febhighOracle = [[${stockMapForOracle.get(9).getHigh()}]];
+        var feblowOracle = [[${stockMapForOracle.get(9).getLow()}]];
+        var febcloseOracle = [[${stockMapForOracle.get(9).getClose()}]];
+
+        var marchopenOracle = [[${stockMapForOracle.get(8).getOpen()}]];
+        var marchhighOracle = [[${stockMapForOracle.get(8).getHigh()}]];
+        var marchlowOracle = [[${stockMapForOracle.get(8).getLow()}]];
+        var marchloseOracle = [[${stockMapForOracle.get(8).getClose()}]];
+
+        var aprilopenOracle = [[${stockMapForOracle.get(7).getOpen()}]];
+        var aprilhighOracle = [[${stockMapForOracle.get(7).getHigh()}]];
+        var aprillowOracle = [[${stockMapForOracle.get(7).getLow()}]];
+        var aprilcloseOracle = [[${stockMapForOracle.get(7).getClose()}]];
+
+        var mayopenOracle = [[${stockMapForOracle.get(6).getOpen()}]];
+        var mayhighOracle = [[${stockMapForOracle.get(6).getHigh()}]];
+        var maylowOracle = [[${stockMapForOracle.get(6).getLow()}]];
+        var maycloseOracle = [[${stockMapForOracle.get(6).getClose()}]];
+
+        var juneopenOracle = [[${stockMapForOracle.get(5).getOpen()}]];
+        var junehighOracle = [[${stockMapForOracle.get(5).getHigh()}]];
+        var junelowOracle = [[${stockMapForOracle.get(5).getLow()}]];
+        var junecloseOracle = [[${stockMapForOracle.get(5).getClose()}]];
+
+        var julyopenOracle = [[${stockMapForOracle.get(4).getOpen()}]];
+        var julyhighOracle = [[${stockMapForOracle.get(4).getHigh()}]];
+        var julylowOracle = [[${stockMapForOracle.get(4).getLow()}]];
+        var julycloseOracle = [[${stockMapForOracle.get(4).getClose()}]];
+
+        var augopenOracle = [[${stockMapForOracle.get(3).getOpen()}]];
+        var aughighOracle = [[${stockMapForOracle.get(3).getHigh()}]];
+        var auglowOracle = [[${stockMapForOracle.get(3).getLow()}]];
+        var augcloseOracle = [[${stockMapForOracle.get(3).getClose()}]];
+
+        var sepopenOracle = [[${stockMapForOracle.get(2).getOpen()}]];
+        var sephighOracle = [[${stockMapForOracle.get(2).getHigh()}]];
+        var seplowOracle = [[${stockMapForOracle.get(2).getLow()}]];
+        var sepcloseOracle = [[${stockMapForOracle.get(2).getClose()}]];
+
+        var octopenOracle = [[${stockMapForOracle.get(1).getOpen()}]];
+        var octhighOracle = [[${stockMapForOracle.get(1).getHigh()}]];
+        var octlowOracle = [[${stockMapForOracle.get(1).getLow()}]];
+        var octcloseOracle = [[${stockMapForOracle.get(1).getClose()}]];
+
+//        var novopen = [[${stockMapForOracle.get(2).getOpen()}]];
+//        var novhigh = [[${stockMapForOracle.get(2).getHigh()}]];
+//        var novlow = [[${stockMapForOracle.get(2).getLow()}]];
+//        var novclose = [[${stockMapForOracle.get(2).getClose()}]];
+//
+//        var decopen = [[${stockMapForOracle.get(1).getOpen()}]];
+//        var dechigh = [[${stockMapForOracle.get(1).getHigh()}]];
+//        var declow = [[${stockMapForOracle.get(1).getLow()}]];
+//        var decclose = [[${stockMapForOracle.get(1).getClose()}]];
+
+
+
+
+
+        var janopenmsftYhoo = [[${stockMapForYahoo.get(10).getOpen()}]];
+        var janhighmsftYhoo = [[${stockMapForYahoo.get(10).getHigh()}]];
+        var janlowmsftYhoo = [[${stockMapForYahoo.get(10).getLow()}]];
+        var janclosemsftYhoo = [[${stockMapForYahoo.get(10).getClose()}]];
+
+        var febopenmsftYhoo = [[${stockMapForYahoo.get(9).getOpen()}]];
+        var febhighmsftYhoo = [[${stockMapForYahoo.get(9).getHigh()}]];
+        var feblowmsftYhoo = [[${stockMapForYahoo.get(9).getLow()}]];
+        var febclosemsftYhoo = [[${stockMapForYahoo.get(9).getClose()}]];
+
+        var marchopenmsftYhoo = [[${stockMapForYahoo.get(8).getOpen()}]];
+        var marchhighmsftYhoo = [[${stockMapForYahoo.get(8).getHigh()}]];
+        var marchlowmsftYhoo = [[${stockMapForYahoo.get(8).getLow()}]];
+        var marchlosemsftYhoo = [[${stockMapForYahoo.get(8).getClose()}]];
+
+        var aprilopenmsftYhoo = [[${stockMapForYahoo.get(7).getOpen()}]];
+        var aprilhighmsftYhoo = [[${stockMapForYahoo.get(7).getHigh()}]];
+        var aprillowmsftYhoo = [[${stockMapForYahoo.get(7).getLow()}]];
+        var aprilclosemsftYhoo = [[${stockMapForYahoo.get(7).getClose()}]];
+
+        var mayopenmsftYhoo = [[${stockMapForYahoo.get(6).getOpen()}]];
+        var mayhighmsftYhoo = [[${stockMapForYahoo.get(6).getHigh()}]];
+        var maylowmsftYhoo = [[${stockMapForYahoo.get(6).getLow()}]];
+        var mayclosemsftYhoo = [[${stockMapForYahoo.get(6).getClose()}]];
+
+        var juneopenmsftYhoo = [[${stockMapForYahoo.get(5).getOpen()}]];
+        var junehighmsftYhoo = [[${stockMapForYahoo.get(5).getHigh()}]];
+        var junelowmsftYhoo = [[${stockMapForYahoo.get(5).getLow()}]];
+        var juneclosemsftYhoo = [[${stockMapForYahoo.get(5).getClose()}]];
+
+        var julyopenmsftYhoo = [[${stockMapForYahoo.get(4).getOpen()}]];
+        var julyhighmsftYhoo = [[${stockMapForYahoo.get(4).getHigh()}]];
+        var julylowmsftYhoo = [[${stockMapForYahoo.get(4).getLow()}]];
+        var julyclosemsftYhoo = [[${stockMapForYahoo.get(4).getClose()}]];
+
+        var augopenmsftYhoo = [[${stockMapForYahoo.get(3).getOpen()}]];
+        var aughighmsftYhoo = [[${stockMapForYahoo.get(3).getHigh()}]];
+        var auglowmsftYhoo = [[${stockMapForYahoo.get(3).getLow()}]];
+        var augclosemsftYhoo = [[${stockMapForYahoo.get(3).getClose()}]];
+
+        var sepopenmsftYhoo = [[${stockMapForYahoo.get(2).getOpen()}]];
+        var sephighmsftYhoo = [[${stockMapForYahoo.get(2).getHigh()}]];
+        var seplowmsftYhoo = [[${stockMapForYahoo.get(2).getLow()}]];
+        var sepclosemsftYhoo = [[${stockMapForYahoo.get(2).getClose()}]];
+
+        var octopenmsftYhoo = [[${stockMapForYahoo.get(1).getOpen()}]];
+        var octhighmsftYhoo = [[${stockMapForYahoo.get(1).getHigh()}]];
+        var octlowmsftYhoo = [[${stockMapForYahoo.get(1).getLow()}]];
+        var octclosemsftYhoo = [[${stockMapForYahoo.get(1).getClose()}]];
+
+//        var novopenmsftYhoo = [[${stockMapForYahoo.get(2).getOpen()}]];
+//        var novhighmsftYhoo = [[${stockMapForYahoo.get(2).getHigh()}]];
+//        var novlowmsftYhoo = [[${stockMapForYahoo.get(2).getLow()}]];
+//        var novclosemsftYhoo = [[${stockMapForYahoo.get(2).getClose()}]];
+//
+//        var decopenmsftYhoo = [[${stockMapForYahoo.get(1).getOpen()}]];
+//        var dechighmsftYhoo = [[${stockMapForYahoo.get(1).getHigh()}]];
+//        var declowmsftYhoo = [[${stockMapForYahoo.get(1).getLow()}]];
+//        var decclosemsftYhoo = [[${stockMapForYahoo.get(1).getClose()}]];
+
+
+
+
+        function oracleVsYhoo() {
+            var oracleVsYhoo = new CanvasJS.Chart("oracleVsYhoo",
+                    {
+                        title:{
+                            text: "Monthly Stock Prices ORACLE Corporation V/S YAHOO for 2016",
+                        },
+                        exportEnabled: true,
+                        axisY: {
+                            includeZero:false,
+                            prefix: "$",
+                            title: "Prices",
+                        },
+                        axisX: {
+                            interval:1,
+                            intervalType: "month",
+
+                            valueFormatString: "MMM",
+                        },
+                        toolTip: {
+                            shared: true,
+                        },
+                        data: [
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "ORACLE Corporation Stock price",
+                                risingColor: "#17EFDA",
+
+                                dataPoints: [   // Y: [Open, High ,Low, Close]
+                                    {x:  new Date(2016,00,01), y:[janopenOracle,  janhighOracle,  janlowOracle,  jancloseOracle]},
+                                    {x:  new Date(2016,01,01), y:[febopenOracle,  febhighOracle,  feblowOracle,  febcloseOracle]},
+                                    {x:  new Date(2016,02,01), y:[marchopenOracle,  marchhighOracle,  marchlowOracle,  marchloseOracle]},
+                                    {x:  new Date(2016,03,01), y:[aprilopenOracle,  aprilhighOracle,  aprillowOracle,  aprilcloseOracle]},
+                                    {x:  new Date(2016,04,01), y:[mayopenOracle,  mayhighOracle,  maylowOracle,  maycloseOracle]},
+                                    {x:  new Date(2016,05,01), y:[juneopenOracle,  junehighOracle,  junelowOracle,  junecloseOracle]},
+                                    {x:  new Date(2016,06,01), y:[julyopenOracle,  julyhighOracle,  julylowOracle,  julycloseOracle]},
+                                    {x:  new Date(2016,07,01), y:[augopenOracle,  aughighOracle,  auglowOracle,  augcloseOracle]},
+                                    {x:  new Date(2016,08,01), y:[sepopenOracle,  sephighOracle,  seplowOracle,  sepcloseOracle]},
+                                    {x:  new Date(2016,09,01), y:[octopenOracle,  octhighOracle,  octlowOracle,  octcloseOracle]}
+//                                    {x:  new Date(2015,10,01), y:[novopen,  novhigh,  novlow,  novclose]},
+//                                    {x:  new Date(2015,11,01), y:[decopen,  dechigh,  declow,  decclose]}
+
+                                ]
+                            },
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "YAHOO Corporation Stock Price",
+                                risingColor: "#B58E55",
+
+                                dataPoints: [   // Y: [Open, High ,Low, Close]
+                                    {x:  new Date(2016,00,01), y:[janopenmsftYhoo,  janhighmsftYhoo,  janlowmsftYhoo,  janclosemsftYhoo]},
+                                    {x:  new Date(2016,01,01), y:[febopenmsftYhoo,  febhighmsftYhoo,  feblowmsftYhoo,  febclosemsftYhoo]},
+                                    {x:  new Date(2016,02,01), y:[marchopenmsftYhoo,  marchhighmsftYhoo,  marchlowmsftYhoo,  marchlosemsftYhoo]},
+                                    {x:  new Date(2016,03,01), y:[aprilopenmsftYhoo,  aprilhighmsftYhoo,  aprillowmsftYhoo,  aprilclosemsftYhoo]},
+                                    {x:  new Date(2016,04,01), y:[mayopenmsftYhoo,  mayhighmsftYhoo,  maylowmsftYhoo,  mayclosemsftYhoo]},
+                                    {x:  new Date(2016,05,01), y:[juneopenmsftYhoo,  junehighmsftYhoo,  junelowmsftYhoo,  juneclosemsftYhoo]},
+                                    {x:  new Date(2016,06,01), y:[julyopenmsftYhoo,  julyhighmsftYhoo,  julylowmsftYhoo,  julyclosemsftYhoo]},
+                                    {x:  new Date(2016,07,01), y:[augopenmsftYhoo,  aughighmsftYhoo,  auglowmsftYhoo,  augclosemsftYhoo]},
+                                    {x:  new Date(2016,08,01), y:[sepopenmsftYhoo,  sephighmsftYhoo,  seplowmsftYhoo,  sepclosemsftYhoo]},
+                                    {x:  new Date(2016,09,01), y:[octopenmsftYhoo,  octhighmsftYhoo,  octlowmsftYhoo,  octclosemsftYhoo]}
+//                                    {x:  new Date(2015,10,01), y:[novopenmsft,  novhighmsft,  novlowmsft,  novclosemsft]},
+//                                    {x:  new Date(2015,11,01), y:[decopenmsft,  dechighmsft,  declowmsft,  decclosemsft]}
+
+                                ]
+                            }
+                        ]
+                    });
+            oracleVsYhoo.render();
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        var janopenIBM = [[${stockMapForIBM.get(10).getOpen()}]];
+        var janhighIBM = [[${stockMapForIBM.get(10).getHigh()}]];
+        var janlowIBM = [[${stockMapForIBM.get(10).getLow()}]];
+        var jancloseIBM = [[${stockMapForIBM.get(10).getClose()}]];
+
+        var febopenIBM= [[${stockMapForIBM.get(9).getOpen()}]];
+        var febhighIBM = [[${stockMapForIBM.get(9).getHigh()}]];
+        var feblowIBM = [[${stockMapForIBM.get(9).getLow()}]];
+        var febcloseIBM = [[${stockMapForIBM.get(9).getClose()}]];
+
+        var marchopenIBM = [[${stockMapForIBM.get(8).getOpen()}]];
+        var marchhighIBM = [[${stockMapForIBM.get(8).getHigh()}]];
+        var marchlowIBM = [[${stockMapForIBM.get(8).getLow()}]];
+        var marchloseIBM = [[${stockMapForIBM.get(8).getClose()}]];
+
+        var aprilopenIBM = [[${stockMapForIBM.get(7).getOpen()}]];
+        var aprilhighIBM = [[${stockMapForIBM.get(7).getHigh()}]];
+        var aprillowIBM = [[${stockMapForIBM.get(7).getLow()}]];
+        var aprilcloseIBM = [[${stockMapForIBM.get(7).getClose()}]];
+
+        var mayopenIBM = [[${stockMapForIBM.get(6).getOpen()}]];
+        var mayhighIBM= [[${stockMapForIBM.get(6).getHigh()}]];
+        var maylowIBM = [[${stockMapForIBM.get(6).getLow()}]];
+        var maycloseIBM = [[${stockMapForIBM.get(6).getClose()}]];
+
+        var juneopenIBM = [[${stockMapForIBM.get(5).getOpen()}]];
+        var junehighIBM= [[${stockMapForIBM.get(5).getHigh()}]];
+        var junelowIBM = [[${stockMapForIBM.get(5).getLow()}]];
+        var junecloseIBM = [[${stockMapForIBM.get(5).getClose()}]];
+
+        var julyopenIBM = [[${stockMapForIBM.get(4).getOpen()}]];
+        var julyhighIBM = [[${stockMapForIBM.get(4).getHigh()}]];
+        var julylowIBM = [[${stockMapForIBM.get(4).getLow()}]];
+        var julycloseIBM = [[${stockMapForIBM.get(4).getClose()}]];
+
+        var augopenIBM= [[${stockMapForIBM.get(3).getOpen()}]];
+        var aughighIBM = [[${stockMapForIBM.get(3).getHigh()}]];
+        var auglowIBM= [[${stockMapForIBM.get(3).getLow()}]];
+        var augcloseIBM = [[${stockMapForIBM.get(3).getClose()}]];
+
+        var sepopenIBM = [[${stockMapForIBM.get(2).getOpen()}]];
+        var sephighIBM = [[${stockMapForIBM.get(2).getHigh()}]];
+        var seplowIBM = [[${stockMapForIBM.get(2).getLow()}]];
+        var sepcloseIBM = [[${stockMapForIBM.get(2).getClose()}]];
+
+        var octopenIBM = [[${stockMapForIBM.get(1).getOpen()}]];
+        var octhighIBM = [[${stockMapForIBM.get(1).getHigh()}]];
+        var octlowIBM = [[${stockMapForIBM.get(1).getLow()}]];
+        var octcloseIBM = [[${stockMapForIBM.get(1).getClose()}]];
+
+        //        var novopen = [[${stockMapForIBM.get(2).getOpen()}]];
+        //        var novhigh = [[${stockMapForIBM.get(2).getHigh()}]];
+        //        var novlow = [[${stockMapForIBM.get(2).getLow()}]];
+        //        var novclose = [[${stockMapForIBM.get(2).getClose()}]];
+        //
+        //        var decopen = [[${stockMapForIBM.get(1).getOpen()}]];
+        //        var dechigh = [[${stockMapForIBM.get(1).getHigh()}]];
+        //        var declow = [[${stockMapForIBM.get(1).getLow()}]];
+        //        var decclose = [[${stockMapForIBM.get(1).getClose()}]];
+
+
+
+
+
+        var janopenApple = [[${stockMapForAAPL.get(10).getOpen()}]];
+        var janhighApple = [[${stockMapForAAPL.get(10).getHigh()}]];
+        var janlowApple = [[${stockMapForAAPL.get(10).getLow()}]];
+        var jancloseApple = [[${stockMapForAAPL.get(10).getClose()}]];
+
+        var febopenApple = [[${stockMapForAAPL.get(9).getOpen()}]];
+        var febhighApple= [[${stockMapForAAPL.get(9).getHigh()}]];
+        var feblowApple = [[${stockMapForAAPL.get(9).getLow()}]];
+        var febcloseApple = [[${stockMapForAAPL.get(9).getClose()}]];
+
+        var marchopenApple= [[${stockMapForAAPL.get(8).getOpen()}]];
+        var marchhighApple = [[${stockMapForAAPL.get(8).getHigh()}]];
+        var marchlowApple = [[${stockMapForAAPL.get(8).getLow()}]];
+        var marchloseApple = [[${stockMapForAAPL.get(8).getClose()}]];
+
+        var aprilopenApple = [[${stockMapForAAPL.get(7).getOpen()}]];
+        var aprilhighApple = [[${stockMapForAAPL.get(7).getHigh()}]];
+        var aprillowApple = [[${stockMapForAAPL.get(7).getLow()}]];
+        var aprilcloseApple = [[${stockMapForAAPL.get(7).getClose()}]];
+
+        var mayopenApple = [[${stockMapForAAPL.get(6).getOpen()}]];
+        var mayhighApple = [[${stockMapForAAPL.get(6).getHigh()}]];
+        var maylowApple = [[${stockMapForAAPL.get(6).getLow()}]];
+        var maycloseApple = [[${stockMapForAAPL.get(6).getClose()}]];
+
+        var juneopenApple = [[${stockMapForAAPL.get(5).getOpen()}]];
+        var junehighApple = [[${stockMapForAAPL.get(5).getHigh()}]];
+        var junelowApple = [[${stockMapForAAPL.get(5).getLow()}]];
+        var junecloseApple = [[${stockMapForAAPL.get(5).getClose()}]];
+
+        var julyopenApple = [[${stockMapForAAPL.get(4).getOpen()}]];
+        var julyhighApple = [[${stockMapForAAPL.get(4).getHigh()}]];
+        var julylowApple= [[${stockMapForAAPL.get(4).getLow()}]];
+        var julycloseApple = [[${stockMapForAAPL.get(4).getClose()}]];
+
+        var augopenApple = [[${stockMapForAAPL.get(3).getOpen()}]];
+        var aughighApple = [[${stockMapForAAPL.get(3).getHigh()}]];
+        var auglowApple = [[${stockMapForAAPL.get(3).getLow()}]];
+        var augcloseApple = [[${stockMapForAAPL.get(3).getClose()}]];
+
+        var sepopenApple = [[${stockMapForAAPL.get(2).getOpen()}]];
+        var sephighApple = [[${stockMapForAAPL.get(2).getHigh()}]];
+        var seplowApple = [[${stockMapForAAPL.get(2).getLow()}]];
+        var sepcloseApple = [[${stockMapForAAPL.get(2).getClose()}]];
+
+        var octopenApple = [[${stockMapForAAPL.get(1).getOpen()}]];
+        var octhighApple = [[${stockMapForAAPL.get(1).getHigh()}]];
+        var octlowApple = [[${stockMapForAAPL.get(1).getLow()}]];
+        var octcloseApple = [[${stockMapForAAPL.get(1).getClose()}]];
+
+        //        var novopenmsftYhoo = [[${stockMapForAAPL.get(2).getOpen()}]];
+        //        var novhighmsftYhoo = [[${stockMapForAAPL.get(2).getHigh()}]];
+        //        var novlowmsftYhoo = [[${stockMapForAAPL.get(2).getLow()}]];
+        //        var novclosemsftYhoo = [[${stockMapForAAPL.get(2).getClose()}]];
+        //
+        //        var decopenmsftYhoo = [[${stockMapForAAPL.get(1).getOpen()}]];
+        //        var dechighmsftYhoo = [[${stockMapForAAPL.get(1).getHigh()}]];
+        //        var declowmsftYhoo = [[${stockMapForAAPL.get(1).getLow()}]];
+        //        var decclosemsftYhoo = [[${stockMapForAAPL.get(1).getClose()}]];
+
+
+
+
+        function ibmVsApple() {
+            var ibmVsApple = new CanvasJS.Chart("ibmVsApple",
+                    {
+                        title:{
+                            text: "Monthly Stock Prices IBM Corporation V/S APPLE for 2016",
+                        },
+                        exportEnabled: true,
+                        axisY: {
+                            includeZero:false,
+                            prefix: "$",
+                            title: "Prices",
+                        },
+                        axisX: {
+                            interval:1,
+                            intervalType: "month",
+
+                            valueFormatString: "MMM",
+                        },
+                        toolTip: {
+                            shared: true,
+                        },
+                        data: [
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "IBM Corporation Stock price",
+                                risingColor: "#17EFDA",
+
+                                dataPoints: [   // Y: [Open, High ,Low, Close]janopenGoogle
+                                    {x:  new Date(2016,00,01), y:[janopenIBM,  janhighIBM,  janlowIBM,  jancloseIBM]},
+                                    {x:  new Date(2016,01,01), y:[febopenIBM,  febhighIBM,  feblowIBM,  febcloseIBM]},
+                                    {x:  new Date(2016,02,01), y:[marchopenIBM,  marchhighIBM,  marchlowIBM,  marchloseIBM]},
+                                    {x:  new Date(2016,03,01), y:[aprilopenIBM,  aprilhighIBM,  aprillowIBM,  aprilcloseIBM]},
+                                    {x:  new Date(2016,04,01), y:[mayopenIBM,  mayhighIBM,  maylowIBM,  maycloseIBM]},
+                                    {x:  new Date(2016,05,01), y:[juneopenIBM,  junehighIBM,  junelowIBM,  junecloseIBM]},
+                                    {x:  new Date(2016,06,01), y:[julyopenIBM,  julyhighIBM,  julylowIBM,  julycloseIBM]},
+                                    {x:  new Date(2016,07,01), y:[augopenIBM,  aughighIBM,  auglowIBM,  augcloseIBM]},
+                                    {x:  new Date(2016,08,01), y:[sepopenIBM,  sephighIBM,  seplowIBM,  sepcloseIBM]},
+                                    {x:  new Date(2016,09,01), y:[octopenIBM,  octhighIBM,  octlowIBM,  octcloseIBM]}
+//                                    {x:  new Date(2015,10,01), y:[novopen,  novhigh,  novlow,  novclose]},
+//                                    {x:  new Date(2015,11,01), y:[decopen,  dechigh,  declow,  decclose]}
+
+                                ]
+                            },
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "APPLE Corporation Stock Price",
+                                risingColor: "#B58E55",
+                                dataPoints: [   // Y: [Open, High ,Low, Close]
+                                    {x:  new Date(2016,00,01), y:[janopenApple,  janhighApple,  janlowApple,  jancloseApple]},
+                                    {x:  new Date(2016,01,01), y:[febopenApple,  febhighApple,  feblowApple,  febcloseApple]},
+                                    {x:  new Date(2016,02,01), y:[marchopenApple,  marchhighApple,  marchlowApple,  marchloseApple]},
+                                    {x:  new Date(2016,03,01), y:[aprilopenApple,  aprilhighApple,  aprillowApple,  aprilcloseApple]},
+                                    {x:  new Date(2016,04,01), y:[mayopenApple,  mayhighApple,  maylowApple,  maycloseApple]},
+                                    {x:  new Date(2016,05,01), y:[juneopenApple,  junehighApple,  junelowApple,  junecloseApple]},
+                                    {x:  new Date(2016,06,01), y:[julyopenApple , julyhighApple,  julylowApple,  julycloseApple]},
+                                    {x:  new Date(2016,07,01), y:[augopenApple,  aughighApple,  auglowApple,  augcloseApple]},
+                                    {x:  new Date(2016,08,01), y:[sepopenApple,  sephighApple,  seplowApple,  sepcloseApple]},
+                                    {x:  new Date(2016,09,01), y:[octopenApple,  octhighApple,  octlowApple,  octcloseApple]}
+//                                    {x:  new Date(2015,10,01), y:[novopenmsft,  novhighmsft,  novlowmsft,  novclosemsft]},
+//                                    {x:  new Date(2015,11,01), y:[decopenmsft,  dechighmsft,  declowmsft,  decclosemsft]}
+
+                                ]
+                            }
+                        ]
+                    });
+            ibmVsApple.render();
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        var janopenGoogle = [[${stockMapForGoogle.get(10).getOpen()}]];
+        var janhighGoogle = [[${stockMapForGoogle.get(10).getHigh()}]];
+        var janlowGoogle = [[${stockMapForGoogle.get(10).getLow()}]];
+        var jancloseGoogle = [[${stockMapForGoogle.get(10).getClose()}]];
+
+        var febopenGoogle = [[${stockMapForGoogle.get(9).getOpen()}]];
+        var febhighGoogle = [[${stockMapForGoogle.get(9).getHigh()}]];
+        var feblowGoogle = [[${stockMapForGoogle.get(9).getLow()}]];
+        var febcloseGoogle = [[${stockMapForGoogle.get(9).getClose()}]];
+
+        var marchopenGoogle = [[${stockMapForGoogle.get(8).getOpen()}]];
+        var marchhighGoogle = [[${stockMapForGoogle.get(8).getHigh()}]];
+        var marchlowGoogle = [[${stockMapForGoogle.get(8).getLow()}]];
+        var marchloseGoogle = [[${stockMapForGoogle.get(8).getClose()}]];
+
+        var aprilopenGoogle = [[${stockMapForGoogle.get(7).getOpen()}]];
+        var aprilhighGoogle = [[${stockMapForGoogle.get(7).getHigh()}]];
+        var aprillowGoogle = [[${stockMapForGoogle.get(7).getLow()}]];
+        var aprilcloseGoogle = [[${stockMapForGoogle.get(7).getClose()}]];
+
+        var mayopenGoogle = [[${stockMapForGoogle.get(6).getOpen()}]];
+        var mayhighGoogle = [[${stockMapForGoogle.get(6).getHigh()}]];
+        var maylowGoogle = [[${stockMapForGoogle.get(6).getLow()}]];
+        var maycloseGoogle = [[${stockMapForGoogle.get(6).getClose()}]];
+
+        var juneopenGoogle = [[${stockMapForGoogle.get(5).getOpen()}]];
+        var junehighGoogle = [[${stockMapForGoogle.get(5).getHigh()}]];
+        var junelowGoogle = [[${stockMapForGoogle.get(5).getLow()}]];
+        var junecloseGoogle = [[${stockMapForGoogle.get(5).getClose()}]];
+
+        var julyopenGoogle = [[${stockMapForGoogle.get(4).getOpen()}]];
+        var julyhighGoogle = [[${stockMapForGoogle.get(4).getHigh()}]];
+        var julylowGoogle = [[${stockMapForGoogle.get(4).getLow()}]];
+        var julycloseGoogle = [[${stockMapForGoogle.get(4).getClose()}]];
+
+        var augopenGoogle = [[${stockMapForGoogle.get(3).getOpen()}]];
+        var aughighGoogle = [[${stockMapForGoogle.get(3).getHigh()}]];
+        var auglowGoogle = [[${stockMapForGoogle.get(3).getLow()}]];
+        var augcloseGoogle = [[${stockMapForGoogle.get(3).getClose()}]];
+
+        var sepopenGoogle = [[${stockMapForGoogle.get(2).getOpen()}]];
+        var sephighGoogle = [[${stockMapForGoogle.get(2).getHigh()}]];
+        var seplowGoogle = [[${stockMapForGoogle.get(2).getLow()}]];
+        var sepcloseGoogle = [[${stockMapForGoogle.get(2).getClose()}]];
+
+        var octopenGoogle = [[${stockMapForGoogle.get(1).getOpen()}]];
+        var octhighGoogle = [[${stockMapForGoogle.get(1).getHigh()}]];
+        var octlowGoogle = [[${stockMapForGoogle.get(1).getLow()}]];
+        var octcloseGoogle = [[${stockMapForGoogle.get(1).getClose()}]];
+
+        //        var novopen = [[${stockMapForGoogle.get(2).getOpen()}]];
+        //        var novhigh = [[${stockMapForGoogle.get(2).getHigh()}]];
+        //        var novlow = [[${stockMapForGoogle.get(2).getLow()}]];
+        //        var novclose = [[${stockMapForGoogle.get(2).getClose()}]];
+        //
+        //        var decopen = [[${stockMapForGoogle.get(1).getOpen()}]];
+        //        var dechigh = [[${stockMapForGoogle.get(1).getHigh()}]];
+        //        var declow = [[${stockMapForGoogle.get(1).getLow()}]];
+        //        var decclose = [[${stockMapForGoogle.get(1).getClose()}]];
+
+
+
+
+
+        var janopenAmzn = [[${stockMapForAmazon.get(10).getOpen()}]];
+        var janhighAmzn = [[${stockMapForAmazon.get(10).getHigh()}]];
+        var janlowAmzn = [[${stockMapForAmazon.get(10).getLow()}]];
+        var jancloseAmzn = [[${stockMapForAmazon.get(10).getClose()}]];
+
+        var febopenAmzn = [[${stockMapForAmazon.get(9).getOpen()}]];
+        var febhighAmzn = [[${stockMapForAmazon.get(9).getHigh()}]];
+        var feblowAmzn = [[${stockMapForAmazon.get(9).getLow()}]];
+        var febcloseAmzn = [[${stockMapForAmazon.get(9).getClose()}]];
+
+        var marchopenAmzn = [[${stockMapForAmazon.get(8).getOpen()}]];
+        var marchhighAmzn = [[${stockMapForAmazon.get(8).getHigh()}]];
+        var marchlowAmzn = [[${stockMapForAmazon.get(8).getLow()}]];
+        var marchloseAmzn = [[${stockMapForAmazon.get(8).getClose()}]];
+
+        var aprilopenAmzn = [[${stockMapForAmazon.get(7).getOpen()}]];
+        var aprilhighAmzn = [[${stockMapForAmazon.get(7).getHigh()}]];
+        var aprillowAmzn = [[${stockMapForAmazon.get(7).getLow()}]];
+        var aprilcloseAmzn = [[${stockMapForAmazon.get(7).getClose()}]];
+
+        var mayopenAmzn = [[${stockMapForAmazon.get(6).getOpen()}]];
+        var mayhighAmzn = [[${stockMapForAmazon.get(6).getHigh()}]];
+        var maylowAmzn = [[${stockMapForAmazon.get(6).getLow()}]];
+        var maycloseAmzn = [[${stockMapForAmazon.get(6).getClose()}]];
+
+        var juneopenAmzn = [[${stockMapForAmazon.get(5).getOpen()}]];
+        var junehighAmzn = [[${stockMapForAmazon.get(5).getHigh()}]];
+        var junelowAmzn = [[${stockMapForAmazon.get(5).getLow()}]];
+        var junecloseAmzn = [[${stockMapForAmazon.get(5).getClose()}]];
+
+        var julyopenAmzn = [[${stockMapForAmazon.get(4).getOpen()}]];
+        var julyhighAmzn = [[${stockMapForAmazon.get(4).getHigh()}]];
+        var julylowAmzn = [[${stockMapForAmazon.get(4).getLow()}]];
+        var julycloseAmzn = [[${stockMapForAmazon.get(4).getClose()}]];
+
+        var augopenAmzn = [[${stockMapForAmazon.get(3).getOpen()}]];
+        var aughighAmzn = [[${stockMapForAmazon.get(3).getHigh()}]];
+        var auglowAmzn = [[${stockMapForAmazon.get(3).getLow()}]];
+        var augcloseAmzn = [[${stockMapForAmazon.get(3).getClose()}]];
+
+        var sepopenAmzn = [[${stockMapForAmazon.get(2).getOpen()}]];
+        var sephighAmzn = [[${stockMapForAmazon.get(2).getHigh()}]];
+        var seplowAmzn = [[${stockMapForAmazon.get(2).getLow()}]];
+        var sepcloseAmzn = [[${stockMapForAmazon.get(2).getClose()}]];
+
+        var octopenAmzn = [[${stockMapForAmazon.get(1).getOpen()}]];
+        var octhighAmzn = [[${stockMapForAmazon.get(1).getHigh()}]];
+        var octlowAmzn = [[${stockMapForAmazon.get(1).getLow()}]];
+        var octcloseAmzn = [[${stockMapForAmazon.get(1).getClose()}]];
+
+        //        var novopenmsftYhoo = [[${stockMapForAmazon.get(2).getOpen()}]];
+        //        var novhighmsftYhoo = [[${stockMapForAmazon.get(2).getHigh()}]];
+        //        var novlowmsftYhoo = [[${stockMapForAmazon.get(2).getLow()}]];
+        //        var novclosemsftYhoo = [[${stockMapForAmazon.get(2).getClose()}]];
+        //
+        //        var decopenmsftYhoo = [[${stockMapForAmazon.get(1).getOpen()}]];
+        //        var dechighmsftYhoo = [[${stockMapForAmazon.get(1).getHigh()}]];
+        //        var declowmsftYhoo = [[${stockMapForAmazon.get(1).getLow()}]];
+        //        var decclosemsftYhoo = [[${stockMapForAmazon.get(1).getClose()}]];
+
+
+
+
+        function googleVsAmazon() {
+            var googleVsAmazon = new CanvasJS.Chart("googleVsAmazon",
+                    {
+                        title:{
+                            text: "Monthly Stock Prices GOOGLE Corporation V/S AMAZON for 2016",
+                        },
+                        exportEnabled: true,
+                        axisY: {
+                            includeZero:false,
+                            prefix: "$",
+                            title: "Prices",
+                        },
+                        axisX: {
+                            interval:1,
+                            intervalType: "month",
+
+                            valueFormatString: "MMM",
+                        },
+                        toolTip: {
+                            shared: true,
+                        },
+                        data: [
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "GOOGLE Corporation Stock price",
+                                risingColor: "#17EFDA",
+
+                                dataPoints: [   // Y: [Open, High ,Low, Close]janopenGoogle
+                                    {x:  new Date(2016,00,01), y:[janopenGoogle,  janhighGoogle,  janlowGoogle,  jancloseGoogle]},
+                                    {x:  new Date(2016,01,01), y:[febopenGoogle,  febhighGoogle,  feblowGoogle,  febcloseGoogle]},
+                                    {x:  new Date(2016,02,01), y:[marchopenGoogle,  marchhighGoogle,  marchlowGoogle,  marchloseGoogle]},
+                                    {x:  new Date(2016,03,01), y:[aprilopenGoogle,  aprilhighGoogle,  aprillowGoogle,  aprilcloseGoogle]},
+                                    {x:  new Date(2016,04,01), y:[mayopenGoogle,  mayhighGoogle,  maylowGoogle,  maycloseGoogle]},
+                                    {x:  new Date(2016,05,01), y:[juneopenGoogle,  junehighGoogle,  junelowGoogle,  junecloseGoogle]},
+                                    {x:  new Date(2016,06,01), y:[julyopenGoogle,  julyhighGoogle,  julylowGoogle,  julycloseGoogle]},
+                                    {x:  new Date(2016,07,01), y:[augopenGoogle,  aughighGoogle,  auglowGoogle,  augcloseGoogle]},
+                                    {x:  new Date(2016,08,01), y:[sepopenGoogle,  sephighGoogle,  seplowGoogle,  sepcloseGoogle]},
+                                    {x:  new Date(2016,09,01), y:[octopenGoogle,  octhighGoogle,  octlowGoogle,  octcloseGoogle]}
+//                                    {x:  new Date(2015,10,01), y:[novopen,  novhigh,  novlow,  novclose]},
+//                                    {x:  new Date(2015,11,01), y:[decopen,  dechigh,  declow,  decclose]}
+
+                                ]
+                            },
+                            {
+                                type: "candlestick",
+                                showInLegend: true,
+                                name: "AMAZON Corporation Stock Price",
+                                risingColor: "#B58E55",
+                                dataPoints: [   // Y: [Open, High ,Low, Close]
+                                    {x:  new Date(2016,00,01), y:[janopenAmzn,  janhighAmzn,  janlowAmzn,  jancloseAmzn]},
+                                    {x:  new Date(2016,01,01), y:[febopenAmzn,  febhighAmzn,  feblowAmzn,  febcloseAmzn]},
+                                    {x:  new Date(2016,02,01), y:[marchopenAmzn,  marchhighAmzn,  marchlowAmzn,  marchloseAmzn]},
+                                    {x:  new Date(2016,03,01), y:[aprilopenAmzn,  aprilhighAmzn,  aprillowAmzn,  aprilcloseAmzn]},
+                                    {x:  new Date(2016,04,01), y:[mayopenAmzn,  mayhighAmzn,  maylowAmzn,  maycloseAmzn]},
+                                    {x:  new Date(2016,05,01), y:[juneopenAmzn,  junehighAmzn,  junelowAmzn,  junecloseAmzn]},
+                                    {x:  new Date(2016,06,01), y:[julyopenAmzn,  julyhighAmzn,  julylowAmzn,  julycloseAmzn]},
+                                    {x:  new Date(2016,07,01), y:[augopenAmzn,  aughighAmzn,  auglowAmzn,  augcloseAmzn]},
+                                    {x:  new Date(2016,08,01), y:[sepopenAmzn,  sephighAmzn,  seplowAmzn,  sepcloseAmzn]},
+                                    {x:  new Date(2016,09,01), y:[octopenAmzn,  octhighAmzn,  octlowAmzn,  octcloseAmzn]}
+//                                    {x:  new Date(2015,10,01), y:[novopenmsft,  novhighmsft,  novlowmsft,  novclosemsft]},
+//                                    {x:  new Date(2015,11,01), y:[decopenmsft,  dechighmsft,  declowmsft,  decclosemsft]}
+
+                                ]
+                            }
+                        ]
+                    });
+            googleVsAmazon.render();
+        }
+    </script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/headermainpage :: header"></th:block> /*/-->
+
+<div class="container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#menu1">INTEL VS MICROSOFT</a></li>
+        <li><a data-toggle="tab" href="#menu2">ORACLE VS YAHOO</a></li>
+        <li><a data-toggle="tab" href="#menu3">GOOGLE VS AMAZON</a></li>
+        <li><a data-toggle="tab" href="#menu4">IBM VS APPLE</a></li>
+
+    </ul>
+
+    <div class="tab-content">
+
+        <div id="menu1" class="tab-pane fade in active">
+            <div class="row center-block">
+                <div class="col-md-12" id="chartContainer" style="height:410px;"></div>
+            </div>
+        </div>
+        <div id="menu2" class="tab-pane fade in active">
+            <div class="row center-block">
+
+                <div class="col-md-12" id="oracleVsYhoo" style="height:410px;"></div>
+            </div>
+        </div>
+        <div id="menu3" class="tab-pane fade in active">
+            <div class="row center-block">
+                <div class="col-md-12" id="googleVsAmazon" style="height:410px;"></div>
+            </div>
+        </div>
+        <div id="menu4" class="tab-pane fade in active">
+            <div class="col-md-12" id="ibmVsApple" style="height:410px;"></div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="container">-->
+    <!--<div class="row center-block">-->
+        <!--<div class="col-md-12" id="chartContainer" style="height:300px;"></div>-->
+        <!--</div>-->
+    <!--<div class="row center-block">-->
+
+    <!--<div class="col-md-12" id="oracleVsYhoo" style="height:300px;"></div>-->
+        <!--</div>-->
+    <!--<div class="row center-block">-->
+        <!--<div class="col-md-12" id="googleVsAmazon" style="height:300px;"></div>-->
+<!--</div>-->
+        <!--<div class="row center-block">-->
+
+        <!--<div class="col-md-12" id="ibmVsApple" style="height:300px;"></div>-->
+            <!--</div>-->
+    <!--</div>-->
+
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav ">
+            <li ><a href="https://finance.yahoo.com/market-overview/?bypass=true">DATA PROVIDED BY YAHOO FINANCE FREE SERVICES</a></li>
+            <li><a href="https://developer.yahoo.com/yql/console/">YAHOO QUOTES & REST QUERIES </a></li>
+            <li><a href="https://github.com/AntonSyzko/anton-syzko-ip-geotracker">PROJECT ON GITHUB</a ></li>
+            <li><a href="https://uk.linkedin.com/pub/anton-syzko/123/9ab/b70">LINKED IN</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><h href="#oracleVsYhoo">Developed By &copy;<a href="mailto:antonsyzko@gmail.com">Anton Syzko</a><br/>for demo / non commercial use</h></li>
+
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

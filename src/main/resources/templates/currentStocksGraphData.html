@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:pages="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <script th:inline="javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:inline="javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css"/>
+
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+    <style>
+        body {
+            padding-top: 5%;
+            padding-bottom: 5%;
+
+        }
+        @media (max-width: 979px) {
+            body {
+                padding-top: 0px;
+            }
+        }
+    </style>
+
+    <script type="text/javascript" th:inline="javascript">
+        window.onload=function () {
+            dailyPrices();
+            compareOpenVSPrevClose();
+            chartCurrentVolume();
+            chartEPSvsPrice();
+            compareYearHighVsYearLow();
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        var oracleStock = [[${oracleStock.getPrice()}]];
+        var googStock = [[${googStock.getPrice()}]];
+        var yhooStock = [[${yhooStock.getPrice()}]];
+        var msftStock = [[${msftStock.getPrice()}]];
+        var intcStock = [[${intcStock.getPrice()}]];
+        var appleStock = [[${appleStock.getPrice()}]];
+        var fbStock = [[${fbStock.getPrice()}]];
+        var amznStock = [[${amznStock.getPrice()}]];
+        var citigroupStock = [[${citigroupStock.getPrice()}]];
+        var hpqStock = [[${hpqStock.getPrice()}]];
+        var dellStock = [[${dellStock.getPrice()}]];
+        var ibmStock = [[${ibmStock.getPrice()}]];
+
+
+        function dailyPrices() {
+            var chartCurrentPrices = new CanvasJS.Chart("currentPricesChart",
+                    {
+                        title:{
+                            text: "CURRENT SHARE PRICE, USD"
+                        },
+                        animationEnabled: true,
+                        axisY: {
+                            title: "CURRENT SHARE PRICES, USD"
+                        },
+                        legend: {
+                            verticalAlign: "bottom",
+                            horizontalAlign: "center"
+                        },
+                        theme: "theme2",
+                        data: [
+
+                            {
+                                type: "column",
+                                showInLegend: true,
+                                legendMarkerColor: "grey",
+                                legendText: "USD - $",
+                                dataPoints: [
+                                    {y: oracleStock, label: "ORACLE"},
+                                    {y: msftStock,  label: "MICROSOFT" },
+                                    {y: ibmStock,  label: "IBM"},
+                                    {y: intcStock,  label: "INTEL"},
+                                    {y: hpqStock,  label: "HP"},
+                                    {y: citigroupStock, label: "CITI Grp"},
+                                    {y: appleStock,  label: "APPLE"},
+                                    {y: fbStock,  label: "FACEBOOK"},
+                                    {y: dellStock,  label: "DELL"},
+                                    {y: yhooStock,  label: "YAHOO"}
+//                                    {y: amznStock,  label: "AMAZON"},
+//                                    {y: googStock,  label: "GOOGLE"}
+                                ]
+                            }
+                        ]
+                    });
+
+            chartCurrentPrices.render();
+        }
+
+
+    </script >
+    <script type="text/javascript"  th:inline="javascript">
+        var oracleStockOpen = [[${oracleStock.getOpen()}]];
+        var yhooStockOpen = [[${yhooStock.getOpen()}]];
+        var msftStockOpen = [[${msftStock.getOpen()}]];
+        var intcStockOpen = [[${intcStock.getOpen()}]];
+        var appleStockOpen = [[${appleStock.getOpen()}]];
+        var fbStockOpen = [[${fbStock.getOpen()}]];
+        var citigroupStockOpen = [[${citigroupStock.getOpen()}]];
+        var hpqStockOpen = [[${hpqStock.getOpen()}]];
+        var dellStockOpen = [[${dellStock.getOpen()}]];
+        var ibmStockOpen = [[${ibmStock.getOpen()}]];
+        //        var googStockOpen = [[${googStock.getOpen()}]];
+        //        var amznStockOpen = [[${amznStock.getOpen()}]];
+
+
+
+        var oracleStockPrevClose = [[${oracleStock.getPreviousClose()}]];
+        var yhooStockPrevClose = [[${yhooStock.getPreviousClose()}]];
+        var msftStockPrevClose = [[${msftStock.getPreviousClose()}]];
+        var intcStockPrevClose = [[${intcStock.getPreviousClose()}]];
+        var appleStockPrevClose = [[${appleStock.getPreviousClose()}]];
+        var fbStockPrevClose = [[${fbStock.getPreviousClose()}]];
+        var citigroupStockPrevClose = [[${citigroupStock.getPreviousClose()}]];
+        var hpqStockPrevClose = [[${hpqStock.getPreviousClose()}]];
+        var dellStockPrevClose = [[${dellStock.getPreviousClose()}]];
+        var ibmStockPrevClose = [[${ibmStock.getPreviousClose()}]];
+        //        var googStockPrevClose = [[${googStock.getPreviousClose()}]];
+        //        var amznStockPrevClose = [[${amznStock.getPreviousClose()}]];
+
+
+        function compareOpenVSPrevClose() {
+
+            var chartcompareOpenVSPrevClose = new CanvasJS.Chart("chartcompareOpenVSPrevClose",
+                    {
+                        theme: "theme3",
+                        animationEnabled: true,
+                        title:{
+                            text: "Share OPEN vs Previous Close Price, USD",
+                            fontSize: 30
+                        },
+                        toolTip: {
+                            shared: true
+                        },
+                        axisY: {
+                            title: "Share Price, USD"
+                        },
+                        axisY2: {
+                            title: "PRICE, USD"
+                        },
+                        data: [
+                            {
+                                type: "column",
+                                name: "Share OPEN Price,$",
+                                legendText: "OPEN ,$",
+                                showInLegend: true,
+                                dataPoints:[
+                                    {label: "ORACLE", y: oracleStockOpen},
+                                    {label: "MICROSOFT", y: msftStockOpen},
+                                    {label: "IBM", y: ibmStockOpen},
+                                    {label: "INTEL", y: intcStockOpen},
+                                    {label: "DELL", y: dellStockOpen},
+                                    {label: "HP", y: hpqStockOpen},
+                                    {label: "APPLE", y: appleStockOpen},
+                                    {label: "FACEBOOK", y: fbStockOpen},
+                                    {label: "YAHOO", y: yhooStockOpen},
+                                    {label: "CITI Grp", y: citigroupStockOpen}
+//                                    {label: "GOOGLE", y: googStockOpen},
+//                                    {label: "AMAZON", y: amznStockOpen},
+
+
+                                ]
+                            },
+                            {
+                                type: "column",
+                                name: "Share PREVIOUS CLOSE Price,$",
+                                legendText: "PREVIOUS CLOSE, $",
+                                axisYType: "secondary",
+                                showInLegend: true,
+                                dataPoints:[
+                                    {label: "ORACLE", y: oracleStockPrevClose},
+                                    {label: "MICROSOFT", y: msftStockPrevClose},
+                                    {label: "IBM", y: ibmStockPrevClose},
+                                    {label: "INTEL", y: intcStockPrevClose},
+                                    {label: "DELL", y: dellStockPrevClose},
+                                    {label: "HP", y: hpqStockPrevClose},
+                                    {label: "APPLE", y: appleStockPrevClose},
+                                    {label: "FACEBOOK", y: fbStockPrevClose},
+                                    {label: "YAHOO", y: yhooStockPrevClose},
+                                    {label: "CITI Grp", y: citigroupStockPrevClose}
+//                                    {label: "GOOGLE", y: googStockPrevClose},
+//                                    {label: "AMAZON", y: amznStockPrevClose},
+
+
+                                ]
+                            }
+
+                        ],
+                        legend:{
+                            cursor:"pointer",
+                            itemclick: function(e){
+                                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                    e.dataSeries.visible = false;
+                                }
+                                else {
+                                    e.dataSeries.visible = true;
+                                }
+                                chartcompareOpenVSPrevClose.render();
+                            }
+                        },
+                    });
+
+            chartcompareOpenVSPrevClose.render();
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        var oracleYearHigh = [[${oracleStock.getWeek52high()}]];
+        var yhooYearHigh = [[${yhooStock.getWeek52high()}]];
+        var msftYearHigh = [[${msftStock.getWeek52high()}]];
+        var intcYearHigh = [[${intcStock.getWeek52high()}]];
+        var appleYearHigh = [[${appleStock.getWeek52high()}]];
+        var fbYearHigh = [[${fbStock.getWeek52high()}]];
+        var citiYearHigh = [[${citigroupStock.getWeek52high()}]];
+        var hpqYearHigh = [[${hpqStock.getWeek52high()}]];
+        var dellYearHigh = [[${dellStock.getWeek52high()}]];
+        var ibmYearHigh = [[${ibmStock.getWeek52high()}]];
+        //        var googStockOpen = [[${googStock.getOpen()}]];
+        //        var amznStockOpen = [[${amznStock.getOpen()}]];
+
+
+
+        var oracleYearLow = [[${oracleStock.getWeek52low()}]];
+        var yhooYearLow = [[${yhooStock.getWeek52low()}]];
+        var msftYearLow = [[${msftStock.getWeek52low()}]];
+        var intcYearLow = [[${intcStock.getWeek52low()}]];
+        var appleYearLow = [[${appleStock.getWeek52low()}]];
+        var fbYearLow = [[${fbStock.getWeek52low()}]];
+        var citigroupYearLow = [[${citigroupStock.getWeek52low()}]];
+        var hpqYearLow = [[${hpqStock.getWeek52low()}]];
+        var dellYearLow = [[${dellStock.getWeek52low()}]];
+        var ibmYearLow = [[${ibmStock.getWeek52low()}]];
+        //        var googStockPrevClose = [[${googStock.getPreviousClose()}]];
+        //        var amznStockPrevClose = [[${amznStock.getPreviousClose()}]];
+
+
+        function compareYearHighVsYearLow() {
+
+            var compareYearHighVsYearLow = new CanvasJS.Chart("compareYearHighVsYearLow",
+                    {
+                        theme: "theme3",
+                        animationEnabled: true,
+                        title:{
+                            text: "Share YEAR HIGH vs YEAR LOW Price, USD",
+                            fontSize: 30
+                        },
+                        toolTip: {
+                            shared: true
+                        },
+                        axisY: {
+                            title: "Share Price, USD"
+                        },
+                        axisY2: {
+                            title: "PRICE, USD"
+                        },
+                        data: [
+                            {
+                                type: "column",
+                                name: "Share YEAR HIGH Price,$",
+                                legendText: "YEAR HIGH ,$",
+                                showInLegend: true,
+                                dataPoints:[
+                                    {label: "ORACLE", y: oracleYearHigh},
+                                    {label: "MICROSOFT", y:msftYearHigh },
+                                    {label: "IBM", y: ibmYearHigh},
+                                    {label: "INTEL", y: intcYearHigh},
+                                    {label: "DELL", y: dellYearHigh},
+                                    {label: "HP", y: hpqYearHigh},
+                                    {label: "APPLE", y: appleYearHigh},
+                                    {label: "FACEBOOK", y: fbYearHigh },
+                                    {label: "YAHOO", y:yhooYearHigh },
+                                    {label: "CITI Grp", y: citiYearHigh}
+//                                    {label: "GOOGLE", y: googStockOpen},
+//                                    {label: "AMAZON", y: amznStockOpen},
+
+
+                                ]
+                            },
+                            {
+                                type: "column",
+                                name: "Share YEAR LOW Price,$",
+                                legendText: "YEAR LOW, $",
+                                axisYType: "secondary",
+                                showInLegend: true,
+                                dataPoints:[
+                                    {label: "ORACLE", y: oracleYearLow },
+                                    {label: "MICROSOFT", y: msftYearLow},
+                                    {label: "IBM", y: ibmYearLow},
+                                    {label: "INTEL", y: intcYearLow },
+                                    {label: "DELL", y: dellYearLow},
+                                    {label: "HP", y: hpqYearLow},
+                                    {label: "APPLE", y: appleYearLow},
+                                    {label: "FACEBOOK", y: fbYearLow},
+                                    {label: "YAHOO", y: yhooYearLow},
+                                    {label: "CITI Grp", y: citigroupYearLow }
+//                                    {label: "GOOGLE", y: googStockPrevClose},
+//                                    {label: "AMAZON", y: amznStockPrevClose},
+
+
+                                ]
+                            }
+
+                        ],
+                        legend:{
+                            cursor:"pointer",
+                            itemclick: function(e){
+                                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                    e.dataSeries.visible = false;
+                                }
+                                else {
+                                    e.dataSeries.visible = true;
+                                }
+                                compareYearHighVsYearLow.render();
+                            }
+                        },
+                    });
+
+            compareYearHighVsYearLow.render();
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        var oracleEPS = [[${oracleStock.getEps()}]];
+        var googEPS  = [[${googStock.getEps()}]];
+        var yhooEPS  = [[${yhooStock.getEps()}]];
+        var msftEPS  = [[${msftStock.getEps()}]];
+        var intcEPS  = [[${intcStock.getEps()}]];
+        var appleEPS  = [[${appleStock.getEps()}]];
+        var fbEPS  = [[${fbStock.getEps()}]];
+        var amznEPS  = [[${amznStock.getEps()}]];
+        var citigroupEPS  = [[${citigroupStock.getEps()}]];
+        var hpqEPS  = [[${hpqStock.getEps()}]];
+        var dellEPS  = [[${dellStock.getEps()}]];
+        var ibmEPS  = [[${ibmStock.getEps()}]];
+        function chartEPSvsPrice() {
+
+            var chartEPSvsPrice = new CanvasJS.Chart("chartEPSvsPrice",
+                    {
+                        theme: "theme3",
+                        animationEnabled: true,
+                        title:{
+                            text: "CURRENT PRICE - EARNINGS RATIO ",
+                            fontSize: 30
+                        },
+                        toolTip: {
+                            shared: true
+                        },
+                        axisY: {
+                            title: "Share Price, USD"
+                        },
+                        axisY2: {
+                            title: "PRICE, USD"
+                        },
+                        data: [
+                            {
+                                type: "column",
+                                name: "Share OPEN Price,$",
+                                legendText: "OPEN ,$",
+                                showInLegend: true,
+                                dataPoints:[
+                                    {label: "ORACLE", y: oracleStock},
+                                    {label: "MICROSOFT", y: msftStock},
+                                    {label: "IBM", y: ibmStock},
+                                    {label: "INTEL", y: intcStock},
+                                    {label: "DELL", y: dellStock},
+                                    {label: "HP", y: hpqStock},
+                                    {label: "APPLE", y: appleStock},
+                                    {label: "FACEBOOK", y: fbStock},
+                                    {label: "YAHOO", y: yhooStock},
+                                    {label: "CITI Grp", y: citigroupStock}
+//                                    {label: "GOOGLE", y: googStock},
+//                                    {label: "AMAZON", y: amznStock}
+
+
+                                ]
+                            },
+                            {
+                                type: "column",
+                                name: "EARNINGS PER SHARE,$",
+                                legendText: "EARNINGS PER SHARE,$",
+                                axisYType: "secondary",
+                                showInLegend: true,
+                                dataPoints:[
+                                    {label: "ORACLE", y: oracleEPS},
+                                    {label: "MICROSOFT", y: msftEPS},
+                                    {label: "IBM", y: ibmEPS},
+                                    {label: "INTEL", y: intcEPS},
+                                    {label: "DELL", y: dellEPS},
+                                    {label: "HP", y: hpqEPS},
+                                    {label: "APPLE", y: appleEPS},
+                                    {label: "FACEBOOK", y: fbEPS},
+                                    {label: "YAHOO", y: yhooEPS},
+                                    {label: "CITI Grp", y: citigroupEPS}
+//                                    {label: "GOOGLE", y: googEPS},
+//                                    {label: "AMAZON", y: amznEPS}
+
+
+                                ]
+                            }
+
+                        ],
+                        legend:{
+                            cursor:"pointer",
+                            itemclick: function(e){
+                                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                    e.dataSeries.visible = false;
+                                }
+                                else {
+                                    e.dataSeries.visible = true;
+                                }
+                                chartEPSvsPrice.render();
+                            }
+                        },
+                    });
+
+            chartEPSvsPrice.render();
+
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript" >
+        var oracleVolume = [[${oracleStock.getVolume()}]];
+        var googVolume = [[${googStock.getVolume()}]];
+        var yhooVolume = [[${yhooStock.getVolume()}]];
+        var msftVolume = [[${msftStock.getVolume()}]];
+        var intcVolume = [[${intcStock.getVolume()}]];
+        var appleVolume = [[${appleStock.getVolume()}]];
+        var fbVolume = [[${fbStock.getVolume()}]];
+        var amznVolume = [[${amznStock.getVolume()}]];
+        var citigroupVolume = [[${citigroupStock.getVolume()}]];
+        var hpqVolume = [[${hpqStock.getVolume()}]];
+        var dellVolume = [[${dellStock.getVolume()}]];
+        var ibmVolume = [[${ibmStock.getVolume()}]];
+
+        function chartCurrentVolume() {
+            var chartCurrentVolume = new CanvasJS.Chart("chartCurrentVolume", {
+                title: {
+                    text: "CURRENT STOCK VOLUME ,MILLIONS",
+                    fontFamily: "Verdana",
+                    fontColor: "Peru",
+                    fontSize: 28
+
+                },
+                animationEnabled: true,
+                axisY: {
+                    tickThickness: 0,
+                    lineThickness: 0,
+                    valueFormatString: " ",
+                    gridThickness: 0
+                },
+                axisX: {
+                    tickThickness: 0,
+                    lineThickness: 0,
+                    labelFontSize: 18,
+                    labelFontColor: "Peru"
+
+                },
+                data: [
+                    {
+                        indexLabelFontSize: 26,
+                        toolTipContent: "<span style='\"'color: {color};'\"'><strong>{indexLabel}</strong></span><span style='\"'font-size: 20px; color:peru '\"'><strong>{y}</strong></span>",
+
+                        indexLabelPlacement: "inside",
+                        indexLabelFontColor: "white",
+                        indexLabelFontWeight: 600,
+                        indexLabelFontFamily: "Verdana",
+                        color: "#5cd65c",
+                        type: "bar",
+                        dataPoints: [
+                            { y: oracleVolume, label: " ", indexLabel: "ORACLE" },
+                            { y: msftVolume, label: " ", indexLabel: "MICROSOFT" },
+                            { y: ibmVolume, label: " ", indexLabel: "IBM" },
+                            { y: intcVolume, label: " ", indexLabel: "INTEL" },
+                            { y: googVolume, label: " ", indexLabel: "GOOGLE" },
+                            { y: amznVolume, label: " ", indexLabel: "AMAZON" },
+                            { y: yhooVolume, label: " ", indexLabel: "YAHOO" },
+                            { y: dellVolume, label: " ", indexLabel: "DELL" },
+                            { y: hpqVolume, label: " ", indexLabel: "HP" },
+                            { y: citigroupVolume, label: " ", indexLabel: "CITI Grp" },
+                            { y: appleVolume, label: " ", indexLabel: "APPLE" },
+                            { y: fbVolume, label: " ", indexLabel: "FACEBOOK" }
+
+
+                        ]
+                    }
+                ]
+            });
+
+            chartCurrentVolume.render();
+
+        }
+    </script>
+
+
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/headermainpage :: header"></th:block> /*/-->
+<div class="container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#menu1">PRICE - EARNINGS RATIO</a></li>
+        <li><a data-toggle="tab" href="#menu2">SHARE PRICES</a></li>
+        <li><a data-toggle="tab" href="#menu3">OPEN VS PREVIOUS CLOSE</a></li>
+        <li><a data-toggle="tab" href="#menu4">STOCK VOLUME</a></li>
+        <li><a data-toggle="tab" href="#menu5">YEAR HIGH VS YEAR LOW </a></li>
+
+
+    </ul>
+
+    <div class="tab-content">
+
+        <div id="menu1" class="tab-pane fade in active">
+            <div class="row center-block">
+                <div class="col-md-12" id="chartEPSvsPrice" style="height:400px;" ></div>
+            </div>
+        </div>
+        <div id="menu2" class="tab-pane fade in active">
+            <div class="row center-block">
+                <div  class="col-md-12" id="currentPricesChart" style="height: 400px; "></div>
+            </div>
+        </div>
+        <div id="menu3" class="tab-pane fade in active">
+            <div class="row center-block">
+                <div class="col-md-12" id="chartcompareOpenVSPrevClose" style="height: 400px;"></div>
+            </div>
+        </div>
+        <div id="menu4" class="tab-pane fade in active">
+            <div class="col-md-12" id="chartCurrentVolume" style="height: 400px; "></div>
+        </div>
+        <div id="menu5" class="tab-pane fade in active">
+            <div  class="col-md-12" id="compareYearHighVsYearLow" style="height: 400px; "></div>
+        </div>
+    </div>
+</div>
+<!--</div>-->
+<!--</div>-->
+
+
+
+<!--<div id="chartEPSvsPrice" ></div>-->
+<!--<div id="currentPricesChart" style="height: 300px; "></div>-->
+<!--<div id="chartcompareOpenVSPrevClose" style="height: 300px;"></div>-->
+<!--<div id="chartCurrentVolume" style="height: 300px; "></div>-->
+<!--<div id="compareYearHighVsYearLow" style="height: 300px; "></div>-->
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav ">
+            <li ><a href="https://finance.yahoo.com/market-overview/?bypass=true">DATA PROVIDED BY YAHOO FINANCE FREE SERVICES</a></li>
+            <li><a href="https://developer.yahoo.com/yql/console/">YAHOO QUOTES & REST QUERIES </a></li>
+            <li><a href="https://github.com/AntonSyzko/anton-syzko-ip-geotracker">PROJECT ON GITHUB</a ></li>
+            <li><a href="https://uk.linkedin.com/pub/anton-syzko/123/9ab/b70">LINKED IN</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><h href="#oracleVsYhoo">Developed By &copy;<a href="mailto:antonsyzko@gmail.com">Anton Syzko</a><br/>for demo / non commercial use</h></li>
+
+        </ul>
+    </div>
+</nav>/div>
+</nav>
+</body>
+</html>

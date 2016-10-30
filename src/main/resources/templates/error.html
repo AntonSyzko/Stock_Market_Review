@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:pages="https://www.w3.org/1999/xhtml">
+<head>
+    <title>Error page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <script th:inline="javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
+
+    <style>
+        body {
+            padding-bottom: 4%;
+        }
+        @media (max-width: 979px) {
+            body {
+                padding-top: 0px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<h1 th:text="${errorCode}">404</h1>
+<h1 th:text="${param.error}">404</h1>
+<p th:text="${errorMessage}">Error java.lang.NullPointerException</p>
+<h1 th:text="${error}" style="margin-left: 40%"></h1>
+
+<div class="container" style="text-align: center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row center-block">
+                <h3>
+                    Oops!</h3>
+                <h1>
+                    404 Page Not Found</h1>
+                <div class="row center-block">
+                    Sorry, an error has occured, Requested page not found!
+                </div>
+                <div class="row center-block">
+                    Financial data is being provided by <a href="https://finance.yahoo.com/market-overview/?bypass=true">YAHOO FINANCE FREE Services</a> <br/>
+                    <b>LAGS / DELAYS AND GAPS MAY OCCUR DUE TO THE HIGH VOLUME OF YAHOO FINANCE  SERVER TRAFFIC</b><br/>
+                   <b>Please try RELOADING this page, or COMING BACK to it in  a FEW SECONDS</b><br/>
+                    <b>In case of <u>INTERNAL SERVER ERROR</u> message RELOAD the page or simply <u>click the below button</u></b>
+                </div>
+                <div class="row center-block">
+                    <a href="mainstocksview.html" th:href="@{/}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Take Me Home To STOCK DATA REVIEW   </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav ">
+            <li ><a style="color: deepskyblue;" href="https://finance.yahoo.com/market-overview/?bypass=true"><i style="font-size:15px" class="fa">&#xf1c0;</i>&nbsp;DATA PROVIDED BY YAHOO FINANCE FREE SERVICES</a></li>
+            <li><a style="color: deepskyblue;" href="https://developer.yahoo.com/yql/console/"><i style="font-size:15px" class="fa">&#xf14c;</i>&nbsp;YAHOO QUOTES & REST QUERIES </a></li>
+            <li><a style="color: deepskyblue;" href="https://github.com/AntonSyzko/anton-syzko-ip-geotracker"><i style="font-size:15px" class="fa">&#xf092;</i>&nbsp;PROJECT ON GITHUB</a ></li>
+            <li><a style="color: deepskyblue;" href="https://uk.linkedin.com/pub/anton-syzko/123/9ab/b70"><i style="font-size:15px"  class="fa" >&#xf08c;</i>&nbsp;LINKEDIN</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><h href="#oracleVsYhoo"><i style="font-size:15px"  class="fa" >&#xf121;</i>&nbsp;Developed By &copy;<a href="mailto:antonsyzko@gmail.com">Anton Syzko</a><br/>for demo / non commercial use</h></li>
+
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:pages="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Yahoo Finance statistics</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <script th:inline="javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:inline="javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css"/>
+
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+
+    <style>
+        body {
+            padding-top: 4%;
+            padding-bottom: 4%;
+        }
+        @media (max-width: 979px) {
+            body {
+                padding-top: 0px;
+            }
+        }
+    </style>
+
+
+    <script type="text/javascript" th:inline="javascript">
+        function crunchifyAjax2() {
+            $.ajax({
+                url : 'currencytickUSDEUR.html',
+                success : function(data) {
+                    $('#result2').html(data);
+                }
+            });
+        }
+    </script>
+
+    <!--<script type="text/javascript" th:inline="javascript">-->
+        <!--function crunchifyAjax3() {-->
+            <!--$.ajax({-->
+                <!--url : 'arraycheck.html',-->
+                <!--success : function(data) {-->
+                    <!--$('#result3').html(data);-->
+
+                <!--}-->
+            <!--});-->
+        <!--}-->
+    <!--</script>-->
+    <script type="text/javascript" th:inline="javascript">
+       // var intervalId = 0;
+        //        intervalId = setInterval(crunchifyAjax, 3000);
+        var intervalId2 = 0;
+        intervalId2 = setInterval(crunchifyAjax2, 1000);
+
+//        var intervalId3 = 0;
+//        intervalId3 = setInterval(crunchifyAjax3, 5);
+
+
+    </script>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/headermainpage :: header"></th:block> /*/-->
+
+<div id="result2"></div>
+<!--<div id="result3"></div>-->
+
+<!--<div id="result4"></div>-->
+
+
+<div class="table-responsive center-block" style="margin: 0.5%">
+    <table class="table table-striped table-bordered table-hover table-condensed"
+           data-toggle="table"
+           data-classes="table table-hover table-condensed"
+           data-striped="true"
+           data-sort-name="price"
+           data-sort-order="desc"
+           data-pagination="true"
+           data-search="description"
+           data-order="price">
+        <caption style="margin-left: 40%"><h4><b>CURRENT STOCK DATA</b></h4></caption>
+
+        <thead class="panel panel-primary"  style="background-color: azure">
+        <tr>
+
+            <th data-field="company" data-sortable="true">COMPANY</th>
+            <th data-field="symbol" data-sortable="true">STOCK<br/>TICKER</th>
+            <th data-field="price" data-sortable="true">PRICE</th>
+            <th data-field="eps" data-sortable="true">EARNINGS <br/>PER<br/> SHARE</th>
+            <th data-field="volume" data-sortable="true">VOLUME</th>
+            <th data-field="week52low" data-sortable="true">YEAR<br/> LOW</th>
+            <th data-field="week52high" data-sortable="true">YEAR<br/> HIGH</th>
+            <th data-field="daylow" data-sortable="true">DAY<br/> LOW</th>
+            <th data-field="dayhigh" data-sortable="true">DAY<br/> HIGH</th>
+            <th data-field="movingav50day" data-sortable="true">YEAR<br/> MOVING<br/> AVERAGE</th>
+            <th data-field="name" data-sortable="true">NAME</th>
+            <th data-field="open" data-sortable="true">OPEN <br/>PRICE</th>
+            <th data-field="prevclose" data-sortable="true">PREVIOUS <br/>CLOSE <br/>PRICE</th>
+            <th data-field="ecxhange" data-sortable="true">ECHANGE</th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="oracleStock  : ${oracleStock}" >
+            <td> <b>ORACLE</b></td>
+            <td  th:text="${oracleStock.getSymbol()}"></td>
+            <td  th:text="${oracleStock.getPrice()}"></td>
+            <td  th:text="${oracleStock.getEps()}"></td>
+
+            <td  th:text="${oracleStock.getVolume()}"></td>
+            <td  th:text="${oracleStock.getWeek52low()}"></td>
+            <td  th:text="${oracleStock.getWeek52high()}"></td>
+            <td th:text="${oracleStock.getDaylow()}"></td>
+            <td th:text="${oracleStock.getDayhigh()}"></td>
+            <td  th:text="${oracleStock.getMovingav50day()}"></td>
+            <td  th:text="${oracleStock.getName()}"></td>
+            <td  th:text="${oracleStock.getOpen()}"></td>
+            <td  th:text="${oracleStock.getPreviousClose()}"></td>
+            <td  th:text="${oracleStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="googStock  : ${googStock}" >
+            <td> <b>GOOGLE</b></td>
+            <td  th:text="${googStock.getSymbol()}"></td>
+            <td  th:text="${googStock.getPrice()}"></td>
+            <td  th:text="${googStock.getEps()}"></td>
+
+            <td  th:text="${googStock.getVolume()}"></td>
+            <td  th:text="${googStock.getWeek52low()}"></td>
+            <td  th:text="${googStock.getWeek52high()}"></td>
+            <td th:text="${googStock.getDaylow()}"></td>
+            <td th:text="${googStock.getDayhigh()}"></td>
+            <td  th:text="${googStock.getMovingav50day()}"></td>
+            <td  th:text="${googStock.getName()}"></td>
+            <td  th:text="${googStock.getOpen()}"></td>
+            <td  th:text="${googStock.getPreviousClose()}"></td>
+            <td  th:text="${googStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="yhooStock  : ${yhooStock}" >
+            <td> <b>YAHOO</b></td>
+
+            <td  th:text="${yhooStock.getSymbol()}"></td>
+            <td  th:text="${yhooStock.getPrice()}"></td>
+            <td  th:text="${yhooStock.getEps()}"></td>
+
+            <td  th:text="${yhooStock.getVolume()}"></td>
+            <td  th:text="${yhooStock.getWeek52low()}"></td>
+            <td  th:text="${yhooStock.getWeek52high()}"></td>
+            <td th:text="${yhooStock.getDaylow()}"></td>
+            <td th:text="${yhooStock.getDayhigh()}"></td>
+            <td  th:text="${yhooStock.getMovingav50day()}"></td>
+            <td  th:text="${yhooStock.getName()}"></td>
+            <td  th:text="${yhooStock.getOpen()}"></td>
+            <td  th:text="${yhooStock.getPreviousClose()}"></td>
+            <td  th:text="${yhooStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="msftStock  : ${msftStock}" >
+            <td> <b>MICROSOFT</b></td>
+
+            <td  th:text="${msftStock.getSymbol()}"></td>
+            <td  th:text="${msftStock.getPrice()}"></td>
+            <td  th:text="${msftStock.getEps()}"></td>
+
+            <td  th:text="${msftStock.getVolume()}"></td>
+            <td  th:text="${msftStock.getWeek52low()}"></td>
+            <td  th:text="${msftStock.getWeek52high()}"></td>
+            <td th:text="${msftStock.getDaylow()}"></td>
+            <td th:text="${msftStock.getDayhigh()}"></td>
+            <td  th:text="${msftStock.getMovingav50day()}"></td>
+            <td  th:text="${msftStock.getName()}"></td>
+            <td  th:text="${msftStock.getOpen()}"></td>
+            <td  th:text="${msftStock.getPreviousClose()}"></td>
+            <td  th:text="${msftStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="intcStock  : ${intcStock}" >
+            <td> <b>INTEL</b></td>
+
+            <td  th:text="${intcStock.getSymbol()}"></td>
+            <td  th:text="${intcStock.getPrice()}"></td>
+            <td  th:text="${intcStock.getEps()}"></td>
+
+            <td  th:text="${intcStock.getVolume()}"></td>
+            <td  th:text="${intcStock.getWeek52low()}"></td>
+            <td  th:text="${intcStock.getWeek52high()}"></td>
+            <td th:text="${intcStock.getDaylow()}"></td>
+            <td th:text="${intcStock.getDayhigh()}"></td>
+            <td  th:text="${intcStock.getMovingav50day()}"></td>
+            <td  th:text="${intcStock.getName()}"></td>
+            <td  th:text="${intcStock.getOpen()}"></td>
+            <td  th:text="${intcStock.getPreviousClose()}"></td>
+            <td  th:text="${intcStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="appleStock  : ${appleStock}" >
+            <td> <b>APPLE</b></td>
+
+            <td  th:text="${appleStock.getSymbol()}"></td>
+            <td  th:text="${appleStock.getPrice()}"></td>
+            <td  th:text="${appleStock.getEps()}"></td>
+
+            <td  th:text="${appleStock.getVolume()}"></td>
+            <td  th:text="${appleStock.getWeek52low()}"></td>
+            <td  th:text="${appleStock.getWeek52high()}"></td>
+            <td th:text="${appleStock.getDaylow()}"></td>
+            <td th:text="${appleStock.getDayhigh()}"></td>
+            <td  th:text="${appleStock.getMovingav50day()}"></td>
+            <td  th:text="${appleStock.getName()}"></td>
+            <td  th:text="${appleStock.getOpen()}"></td>
+            <td  th:text="${appleStock.getPreviousClose()}"></td>
+            <td  th:text="${appleStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="fbStock  : ${fbStock}" >
+            <td> <b>FACEBOOK</b></td>
+
+            <td  th:text="${fbStock.getSymbol()}"></td>
+            <td  th:text="${fbStock.getPrice()}"></td>
+            <td  th:text="${fbStock.getEps()}"></td>
+
+            <td  th:text="${fbStock.getVolume()}"></td>
+            <td  th:text="${fbStock.getWeek52low()}"></td>
+            <td  th:text="${fbStock.getWeek52high()}"></td>
+            <td th:text="${fbStock.getDaylow()}"></td>
+            <td th:text="${fbStock.getDayhigh()}"></td>
+            <td  th:text="${fbStock.getMovingav50day()}"></td>
+            <td  th:text="${fbStock.getName()}"></td>
+            <td  th:text="${fbStock.getOpen()}"></td>
+            <td  th:text="${fbStock.getPreviousClose()}"></td>
+            <td  th:text="${fbStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="amznStock  : ${amznStock}" >
+            <td> <b>AMAZON</b></td>
+
+            <td  th:text="${amznStock.getSymbol()}"></td>
+            <td  th:text="${amznStock.getPrice()}"></td>
+            <td  th:text="${amznStock.getEps()}"></td>
+
+            <td  th:text="${amznStock.getVolume()}"></td>
+            <td  th:text="${amznStock.getWeek52low()}"></td>
+            <td  th:text="${amznStock.getWeek52high()}"></td>
+            <td th:text="${amznStock.getDaylow()}"></td>
+            <td th:text="${amznStock.getDayhigh()}"></td>
+            <td  th:text="${amznStock.getMovingav50day()}"></td>
+            <td  th:text="${amznStock.getName()}"></td>
+            <td  th:text="${amznStock.getOpen()}"></td>
+            <td  th:text="${amznStock.getPreviousClose()}"></td>
+            <td  th:text="${amznStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="citigroupStock  : ${citigroupStock}" >
+            <td> <b>CITI GROUP</b></td>
+
+            <td  th:text="${citigroupStock.getSymbol()}"></td>
+            <td  th:text="${citigroupStock.getPrice()}"></td>
+            <td  th:text="${citigroupStock.getEps()}"></td>
+
+            <td  th:text="${citigroupStock.getVolume()}"></td>
+            <td  th:text="${citigroupStock.getWeek52low()}"></td>
+            <td  th:text="${citigroupStock.getWeek52high()}"></td>
+            <td th:text="${citigroupStock.getDaylow()}"></td>
+            <td th:text="${citigroupStock.getDayhigh()}"></td>
+            <td  th:text="${citigroupStock.getMovingav50day()}"></td>
+            <td  th:text="${citigroupStock.getName()}"></td>
+            <td  th:text="${citigroupStock.getOpen()}"></td>
+            <td  th:text="${citigroupStock.getPreviousClose()}"></td>
+            <td  th:text="${citigroupStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="hpqStock  : ${hpqStock}" >
+            <td> <b>HEWLETT PACKARD</b></td>
+
+            <td  th:text="${hpqStock.getSymbol()}"></td>
+            <td  th:text="${hpqStock.getPrice()}"></td>
+            <td  th:text="${hpqStock.getEps()}"></td>
+
+            <td  th:text="${hpqStock.getVolume()}"></td>
+            <td  th:text="${hpqStock.getWeek52low()}"></td>
+            <td  th:text="${hpqStock.getWeek52high()}"></td>
+            <td th:text="${hpqStock.getDaylow()}"></td>
+            <td th:text="${hpqStock.getDayhigh()}"></td>
+            <td  th:text="${hpqStock.getMovingav50day()}"></td>
+            <td  th:text="${hpqStock.getName()}"></td>
+            <td  th:text="${hpqStock.getOpen()}"></td>
+            <td  th:text="${hpqStock.getPreviousClose()}"></td>
+            <td  th:text="${hpqStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="dellStock  : ${dellStock}" >
+            <td> <b>DELL</b></td>
+
+            <td  th:text="${dellStock.getSymbol()}"></td>
+            <td  th:text="${dellStock.getPrice()}"></td>
+            <td  th:text="${dellStock.getEps()}"></td>
+
+            <td  th:text="${dellStock.getVolume()}"></td>
+            <td  th:text="${dellStock.getWeek52low()}"></td>
+            <td  th:text="${dellStock.getWeek52high()}"></td>
+            <td th:text="${dellStock.getDaylow()}"></td>
+            <td th:text="${dellStock.getDayhigh()}"></td>
+            <td  th:text="${dellStock.getMovingav50day()}"></td>
+            <td  th:text="${dellStock.getName()}"></td>
+            <td  th:text="${dellStock.getOpen()}"></td>
+            <td  th:text="${dellStock.getPreviousClose()}"></td>
+            <td  th:text="${dellStock.getExchange()}"></td>
+        </tr>
+        <tr th:each="ibmStock  : ${ibmStock}" >
+            <td> <b>IBM</b></td>
+
+            <td  th:text="${ibmStock.getSymbol()}"></td>
+            <td  th:text="${ibmStock.getPrice()}"></td>
+            <td  th:text="${ibmStock.getEps()}"></td>
+
+            <td  th:text="${ibmStock.getVolume()}"></td>
+            <td  th:text="${ibmStock.getWeek52low()}"></td>
+            <td  th:text="${ibmStock.getWeek52high()}"></td>
+            <td th:text="${ibmStock.getDaylow()}"></td>
+            <td th:text="${ibmStock.getDayhigh()}"></td>
+            <td  th:text="${ibmStock.getMovingav50day()}"></td>
+            <td  th:text="${ibmStock.getName()}"></td>
+            <td  th:text="${ibmStock.getOpen()}"></td>
+            <td  th:text="${ibmStock.getPreviousClose()}"></td>
+            <td  th:text="${ibmStock.getExchange()}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav ">
+            <li ><a href="https://finance.yahoo.com/market-overview/?bypass=true">DATA PROVIDED BY YAHOO FINANCE FREE SERVICES</a></li>
+            <li><a href="https://developer.yahoo.com/yql/console/">YAHOO QUOTES & REST QUERIES </a></li>
+            <li><a href="https://github.com/AntonSyzko/anton-syzko-ip-geotracker">PROJECT ON GITHUB</a ></li>
+            <li><a href="https://uk.linkedin.com/pub/anton-syzko/123/9ab/b70">LINKED IN</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><h href="#oracleVsYhoo">Developed By &copy;<a href="mailto:antonsyzko@gmail.com">Anton Syzko</a><br/>for demo / non commercial use</h></li>
+
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

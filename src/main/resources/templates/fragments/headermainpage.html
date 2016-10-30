@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:pages="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Title</title>
+    <meta charset="UTF-8" http-equiv="Content-Type" content="text/html; charset=UTF-8;width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--migrating to bootstrap dublicated-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <script  src="//code.jquery.com/jquery.js"></script>
+
+
+
+</head>
+<body >
+<div th:fragment="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav ">
+                <li > <a href="fbstocks.html"  th:href="@{/}"><b style="text-align: center;display: inline-block">CURRENT MAJOR STOCKS REVIEW</b></a></li>
+                <li > <a href="currentStocksGraphData.html" th:href="@{/currentStocksGraphData.html}" ><b style="text-align: center;display: inline-block">CURRENT DATA CHARTS</b></a></li>
+                <li > <a href="intelvsmicrosoft.html"  th:href="@{/intelvsmicrosoft.html}"><b style="text-align: center;display: inline-block">COMPARE MAJOR STOCKS YEAR STATISTICS</b></a></li>
+                <li > <a href="eachsinglestock.html"  th:href="@{/eachsinglestock.html}" ><b style="text-align: center;display: inline-block">MAJOR STOCKS YEAR STATISTICS</b></a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><b>SOCIAL<span class="caret"></span></b> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://uk.linkedin.com/pub/anton-syzko/123/9ab/b70">Linked In</a></li>
+                        <li><a href="https://github.com/AntonSyzko/anton-syzko-ip-geotracker">This Project On GitHub</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</div>
+
+</body>
+</html>
