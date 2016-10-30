@@ -11,7 +11,7 @@ Ajax + Yahoo finance rest live data provide live Forex currency and commodities 
   
 <hr/>
 <b style="margin-left: 40%">Getting Started</b><br/>
-   <a href="https://anton-syzko-financial-review.herokuapp.com">Stock Market Financial Review</a><br/>
+ App on Heroku Cloud  <a href="https://anton-syzko-financial-review.herokuapp.com">Stock Market Financial Review</a><br/>
 Yahoo Finance Live rates will be refreshed every second.
 Click on Current Data Charts to review current data ( some data may be absent du to stocks market working hours<br/>
 (e.g. Day High Day /  Low prices / Stocks Volume  are determined after the Stocks close .
@@ -21,7 +21,7 @@ Sort the Current Stock Market Data to find the max / min values . Use search to 
 <hr/>
 
 <b style="margin-left: 40%">DEMO</b><br/>
-<h><a href="https://anton-syzko-financial-review.herokuapp.com">Stock Market Financial Review</a></h><br/>
+<h>App on Heroku Cloud <a href="https://anton-syzko-financial-review.herokuapp.com">Stock Market Financial Review</a></h><br/>
 
 
 <hr/>
