@@ -1,12 +1,6 @@
 # Stock_Market_Review
 Stocks Market and Forex Review based on yahoo Finance
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Stock Market Financial Review</title>
-</head>
-<body>
+
 
 <b style="margin-left: 40%">STOCK MARKET FINANCIAL REVIEW</b>
 <hr />
